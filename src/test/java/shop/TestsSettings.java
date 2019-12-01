@@ -6,8 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import shop.pages.ElectronicToolPage;
 
 
 public abstract class TestsSettings {
@@ -23,6 +25,7 @@ public abstract class TestsSettings {
 
     @Before
     public void setUp(){
+
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver78");
 
         driver = new ChromeDriver();
@@ -31,17 +34,13 @@ public abstract class TestsSettings {
 
         wait = new WebDriverWait(driver, 10);
 
-        driver.get("https://27.ua/shop/");
+        ElectronicToolPage electronicToolPage = PageFactory.initElements(driver, ElectronicToolPage.class);
 
-        WebElement shopCategories = driver.findElement(By.className("shop-categories__container"));
+        electronicToolPage.open();
 
-        WebElement toolsAndInstruments = shopCategories.findElement(By.cssSelector("[href=\"/shop/elektroinstrumenty/\"]"));
+        electronicToolPage.goToTheElectronicTool();
 
-        toolsAndInstruments.click();
-
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("shop-categories")));
-
-        this.categories = driver.findElement(By.className("shop-categories__container"));
+        //this.categories = driver.findElement(By.className("shop-categories__container"));
 
     }
 
