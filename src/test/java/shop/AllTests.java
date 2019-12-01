@@ -14,7 +14,7 @@ import java.util.Random;
 public class AllTests extends TestsSettings{
 
     @Test
-    public void promotionalPriceCheck() {
+    public void drillsPriceCheck() {
 
         DrillsPage drillsPage = PageFactory.initElements(driver, DrillsPage.class);
 
